@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return "Hello!";
-});
+Route::get('/', 'HomeController@index');
+
+Route::get('/register', 'Auth\RegisterController@create')->name('register');
+Route::post('/register', 'Auth\RegisterController@store')->name('postRegister');
+
+Route::get('/login', 'Auth\LoginController@create')->name('login');
