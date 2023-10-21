@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/register', 'Auth\RegisterController@create')->name('register');
 Route::post('/register', 'Auth\RegisterController@store')->name('postRegister');
 
-Route::get('/login', 'Auth\LoginController@create')->name('login');
+Route::get('/login', 'Auth\LoginController@index')->name('login');
+Route::post('/login', 'Auth\LoginController@login')->name('postLogin');
