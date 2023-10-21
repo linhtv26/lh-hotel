@@ -20,8 +20,16 @@
                                 @endif
                                 <!-- /Heading -->
                                 <hr>
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </div>
+                                @endif
                                 <!-- Form Login -->
-                                <form class="needs-validation" method="post" novalidate="" action="https://bilury.bithemer.com/dashboard.html">
+                                <form class="" method="post" novalidate="" action="{{ route('postLogin') }}">
+                                    {{ csrf_field() }}
                                     <!-- Login Facebook/Google -->
                                     <div class="row g-4 mb-5">
                                         <div class="col-6">
@@ -50,13 +58,11 @@
                                     <!-- Login Email -->
                                     <div class="mb-5">
                                         <label for="txtEmail2" class="form-label">Email<span class="text-danger">*</span></label>
-                                        <input class="form-control shadow-sm" type="text" id="txtEmail2" name="username2" value="" placeholder="" required="">
-                                        <div class="invalid-feedback"> Please enter username. </div>
+                                        <input class="form-control" type="text" id="" name="email" value="" placeholder="" required="">
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtPassword2" class="form-label">Password<span class="text-danger">*</span></label>
-                                        <input class="form-control shadow-sm" id="txtPassword2" name="password2" placeholder="" value="" type="password" required="">
-                                        <div class="invalid-feedback"> Please enter password. </div>
+                                        <input class="form-control" id="" name="password" placeholder="" value="" type="password" required="">
                                     </div>
                                     <div class="row">
                                         <div class="col-6">

@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Model\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthService extends BaseService
 {
@@ -19,6 +20,14 @@ class AuthService extends BaseService
             'email' => $email,
             'password' => $password
         ]);
+    }
 
+    public function handleLogin($infoLogin)
+    {
+        if (Auth::attempt($infoLogin)) {
+            return true;
+        }
+
+        return false;
     }
 }
