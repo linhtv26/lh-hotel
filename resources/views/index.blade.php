@@ -1,5 +1,16 @@
 @extends('layouts.default')
 
+@push('script')
+    @if(session()->has('success_login'))
+        <script>
+            toastr.options = {
+                "positionClass": "toast-top-left",
+            }
+            toastr.success('{{ session()->get('success_login') }}')
+        </script>
+    @endif
+@endpush
+
 @section('content')
     <main>
         <!-- Hero carousel -->
@@ -966,3 +977,4 @@
         <!-- /Quick booking -->
     </main>
 @endsection
+

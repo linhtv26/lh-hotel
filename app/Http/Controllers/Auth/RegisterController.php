@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
+use App\Mail\SuccessRegistration;
 use App\Model\User;
 use App\Service\AuthService;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -35,7 +37,12 @@ class RegisterController extends Controller
 
         //handle logic + query database
         if ($this->authService->createNewUser($formData)) {
-            return redirect()->route('login')->with('success_message', 'You have successfully registered. Let \'s login');
+            Mail::to($request->input('email'))->send(new SuccessRegistration());
+            return redirect()->route('login')
+                ->with([
+                    'success_message' => 'You have successfully registered. Let \'s login',
+                    'success_register' => 'Great! Login to join us.'
+                ]);
         }
 
         return false;

@@ -36,7 +36,8 @@ class LoginController extends Controller
 
         $validLogin = $this->authService->handleLogin($loginInfo);
         if ($validLogin) {
-            return redirect()->intended();
+
+            return redirect()->intended()->with('success_login', 'Welcome back!');
         }
 
         return redirect()->back()->withErrors(['msg' => 'Account is not exits!']);
