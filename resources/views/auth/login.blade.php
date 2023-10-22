@@ -1,5 +1,14 @@
 @extends('layouts.default')
-
+@push('script')
+    @if(session()->has('success_register'))
+        <script>
+            toastr.options = {
+                "positionClass": "toast-top-left",
+            }
+            toastr.success('{{ session()->get('success_register') }}')
+        </script>
+    @endif
+@endpush
 @section('content')
     <main>
         <!-- Login -->
